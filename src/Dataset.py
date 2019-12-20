@@ -46,10 +46,10 @@ class PneumoniaDataset(object):
 		iscrowd = torch.as_tensor(iscrowd, dtype=torch.int64)
 		image_id = torch.tensor([image_id])
 		target = {"boxes":boxes,
-					"labels":labels,
-					"image_id":image_id,
-					"area":area,
-					"iscrowd":iscrowd}
+				"labels":labels,
+				"image_id":image_id,
+				"area":area,
+				"iscrowd":iscrowd}
 		if self.transforms is not None:
 			img, target = self.transforms(img, target)
 		return img, target
