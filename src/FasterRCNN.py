@@ -36,7 +36,7 @@ class Transform3ChannelLayer(torch.nn.Module):
 	def forward(self,x):
 		return self.convLayer(x)
 
-def get_model_instance_segmentaton(num_classes):
+def get_model_instance_segmentation(num_classes):
 	oneD = Transform3ChannelLayer()
 	# load a pre-trained model for classification and return
 	# only the features
