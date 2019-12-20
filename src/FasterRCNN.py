@@ -33,7 +33,7 @@ class Transform3ChannelLayer(torch.nn.Module):
 		self.kernel_size = 3
 		self.convLayer = torch.nn.Conv2d(self.in_channels, self.out_channels, self.kernel_size)
 
-	def forward(self,x):
+	def forward(self,x, target):
 		return self.convLayer(x)
 
 def get_model_instance_segmentation(num_classes):

@@ -34,7 +34,7 @@ def main(batch_size=16,):
 		collate_fn=utils.collate_fn)
 
 	# get the model using our helper function
-	model = get_model_instance_segmentation(num_classes)
+	model = get_model_instance_segmentation_unmodified(num_classes)
 
 	# move model to the right device
 	model.to(device)
