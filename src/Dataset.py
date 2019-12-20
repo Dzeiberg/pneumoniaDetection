@@ -50,8 +50,8 @@ class PneumoniaDataset(object):
 						"image_id":image_id,
 						"area":area,
 						"iscrowd":iscrowd}
-			if self.transforms is not None:
-				img, target = self.transforms(img, target)
+		if self.transforms is not None:
+			img, target = self.transforms(img, target)
 		return img, target
 
 	def __len__(self):
