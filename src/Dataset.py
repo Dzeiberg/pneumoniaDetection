@@ -20,12 +20,12 @@ class PneumoniaDataset(object):
 		pixels = dcm.pixel_array
 		img = Image.fromarray(pixels).convert('RGB')
 		# Populate necessary fields
-		#image_id = row["patientId"]
 		image_id = idx
-		boxes = []
-		labels = []
-		area = []
-		iscrowd = []
+		# ADD dummy box to issue for control patients
+		boxes = [[0,0,50,50]]
+		labels = [0]
+		area = [250]
+		iscrowd = [False]
 		target = None
 		if "nan" not in row["x"]:
 			xList = literal_eval(row["x"])

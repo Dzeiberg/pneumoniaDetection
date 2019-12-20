@@ -18,8 +18,8 @@ def get_transform(train):
 def main(batch_size=1,):
 	# train on the GPU or on the CPU, if a GPU is not available
 	device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
-
-	num_classes = 1
+	# 2 box classes, dummy or pneumonia
+	num_classes = 2
 	# use our dataset and defined transformations
 	dataset = PneumoniaDataset(dataRoot="../stage_2_train_images", infoFile="../stage_2_train_split_all.csv", transforms=get_transform(train=True))
 	dataset_test = PneumoniaDataset(dataRoot="../stage_2_train_images", infoFile="../stage_2_val_split_all.csv", transforms=get_transform(train=False))
