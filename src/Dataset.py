@@ -50,6 +50,8 @@ class PneumoniaDataset(object):
 						"image_id":image_id,
 						"area":area,
 						"iscrowd":iscrowd}
+		else:
+			print("no boxes")
 		if self.transforms is not None:
 			img, target = self.transforms(img, target)
 		return img, target

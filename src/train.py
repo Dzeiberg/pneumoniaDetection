@@ -15,7 +15,7 @@ def get_transform(train):
 #		transforms.append(T.RandomHorizontalFlip(0.5))
 	return T.Compose(transforms)
 
-def main(batch_size=16,):
+def main(batch_size=1,):
 	# train on the GPU or on the CPU, if a GPU is not available
 	device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 
