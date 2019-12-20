@@ -2,7 +2,7 @@ import torch
 from engine import train_one_epoch, evaluate
 import utils
 from Dataset import PneumoniaDataset
-from FasterRCNN import get_model_instance_segmentation
+from FasterRCNN import *
 import transforms as T
 
 def get_transform(train):
