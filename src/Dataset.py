@@ -40,7 +40,6 @@ class PneumoniaDataset(object):
 				area.append(w * h)
 				iscrowd.append(False)
 		boxes = torch.as_tensor(boxes, dtype=torch.float32)
-		print("boxes has size",boxes.size())
 		labels = torch.as_tensor(labels, dtype=torch.int64)
 		area = torch.as_tensor(area, dtype=torch.float32)
 		iscrowd = torch.as_tensor(iscrowd, dtype=torch.int64)
