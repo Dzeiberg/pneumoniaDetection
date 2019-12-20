@@ -21,8 +21,8 @@ def main(batch_size=16,):
 
 	num_classes = 1
 	# use our dataset and defined transformations
-	dataset = PneumoniaDataset("../stage_2_train_images",infoFile="../stage_2_train_split_all.csv", get_transform(train=True))
-	dataset_test = PneumoniaDataset("../stage_2_train_images",infoFile="../stage_2_val_split_all.csv", get_transform(train=False))
+	dataset = PneumoniaDataset("../stage_2_train_images", "../stage_2_train_split_all.csv", get_transform(train=True))
+	dataset_test = PneumoniaDataset("../stage_2_train_images", "../stage_2_val_split_all.csv", get_transform(train=False))
 
 	# define training and validation data loaders
 	data_loader = torch.utils.data.DataLoader(
