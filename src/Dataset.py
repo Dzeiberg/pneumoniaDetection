@@ -18,7 +18,7 @@ class PneumoniaDataset(object):
 		dcmPath = os.path.join(self.dataRoot,row["patientId"]) + ".dcm"
 		dcm = pydicom.dcmread(dcmPath)
 		pixels = dcm.pixel_array
-		img = Image.fromarray(pixels)
+		img = Image.fromarray(pixels).convert('RGB')
 		# Populate necessary fields
 		#image_id = row["patientId"]
 		image_id = idx
