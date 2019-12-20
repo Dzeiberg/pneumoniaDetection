@@ -1,18 +1,18 @@
 from engine import train_one_epoch, evaluate
 import utils
-import transforms as T
+#import transforms as T
 from dataset import PneumoniaDataset
 from FasterRCNN import get_model_instance_segmentation
 
-def get_transform(train):
-	transforms = []
-	# converts the image, a PIL image, into a PyTorch Tensor
-	transforms.append(T.ToTensor())
-	if train:
-		# during training, randomly flip the training images
-		# and ground-truth for data augmentation
-		transforms.append(T.RandomHorizontalFlip(0.5))
-	return T.Compose(transforms)
+# def get_transform(train):
+# 	transforms = []
+# 	# converts the image, a PIL image, into a PyTorch Tensor
+# 	transforms.append(T.ToTensor())
+# 	if train:
+# 		# during training, randomly flip the training images
+# 		# and ground-truth for data augmentation
+# 		transforms.append(T.RandomHorizontalFlip(0.5))
+# 	return T.Compose(transforms)
 
 def main(batch_size=16,):
 	dataset = PneumoniaDataset()
@@ -21,8 +21,8 @@ def main(batch_size=16,):
 
 	num_classes = 1
 	# use our dataset and defined transformations
-	dataset = PneumoniaDataset("../stage_2_train_images", "../stage_2_train_split_all.csv", get_transform(train=True))
-	dataset_test = PneumoniaDataset("../stage_2_train_images", "../stage_2_val_split_all.csv", get_transform(train=False))
+	dataset = PneumoniaDataset("../stage_2_train_images", "../stage_2_train_split_all.csv")
+	dataset_test = PneumoniaDataset("../stage_2_train_images", "../stage_2_val_split_all.csv")
 
 	# define training and validation data loaders
 	data_loader = torch.utils.data.DataLoader(
