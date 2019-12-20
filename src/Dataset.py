@@ -39,19 +39,17 @@ class PneumoniaDataset(object):
 				labels.append(label)
 				area.append(w * h)
 				iscrowd.append(False)
-			boxes = torch.as_tensor(boxes, dtype=torch.float32)
-			print("boxes has size",boxes.size())
-			labels = torch.as_tensor(labels, dtype=torch.int64)
-			area = torch.as_tensor(area, dtype=torch.float32)
-			iscrowd = torch.as_tensor(iscrowd, dtype=torch.int64)
-			image_id = torch.tensor([image_id])
-			target = {"boxes":boxes,
-						"labels":labels,
-						"image_id":image_id,
-						"area":area,
-						"iscrowd":iscrowd}
-		else:
-			print("no boxes")
+		boxes = torch.as_tensor(boxes, dtype=torch.float32)
+		print("boxes has size",boxes.size())
+		labels = torch.as_tensor(labels, dtype=torch.int64)
+		area = torch.as_tensor(area, dtype=torch.float32)
+		iscrowd = torch.as_tensor(iscrowd, dtype=torch.int64)
+		image_id = torch.tensor([image_id])
+		target = {"boxes":boxes,
+					"labels":labels,
+					"image_id":image_id,
+					"area":area,
+					"iscrowd":iscrowd}
 		if self.transforms is not None:
 			img, target = self.transforms(img, target)
 		return img, target
