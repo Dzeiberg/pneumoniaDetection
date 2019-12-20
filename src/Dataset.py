@@ -18,7 +18,7 @@ class PneumoniaDataset(object):
 		dcmPath = os.path.join(self.dataRoot,row["patientId"]) + ".dcm"
 		dcm = pydicom.dcmread(dcmPath)
 		pixels = dcm.pixel_array
-		img = Image.fromarray(pixels).convert('RGB')
+		img = Image.fromarray(pixels)
 		# Populate necessary fields
 		image_id = idx
 		# ADD dummy box to issue for control patients

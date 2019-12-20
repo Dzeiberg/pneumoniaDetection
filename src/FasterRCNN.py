@@ -21,7 +21,8 @@ def get_model_instance_segmentation_unmodified(num_classes):
 	# model.roi_heads.mask_predictor = MaskRCNNPredictor(in_features_mask,
 	# 												   hidden_layer,
 	# 												   num_classes)
-	model = torchvision.models.detection.fasterrcnn_resnet50_fpn(pretrained=True, num_classes=num_classes)
+	model = torchvision.models.detection.fasterrcnn_resnet50_fpn(pretrained=False, num_classes=2)
+	model.backbone.body.conv1 = torch.nn.Conv2d(1,64,kernel_size=(7,7), stride=(2, 2), padding=(3, 3), bias=False)
 
 	return model
 
