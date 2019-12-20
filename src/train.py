@@ -1,7 +1,6 @@
 from engine import train_one_epoch, evaluate
 import utils
-#import transforms as T
-from dataset import PneumoniaDataset
+from Dataset import PneumoniaDataset
 from FasterRCNN import get_model_instance_segmentation
 
 # def get_transform(train):
@@ -21,8 +20,8 @@ def main(batch_size=16,):
 
 	num_classes = 1
 	# use our dataset and defined transformations
-	dataset = PneumoniaDataset("../stage_2_train_images", "../stage_2_train_split_all.csv")
-	dataset_test = PneumoniaDataset("../stage_2_train_images", "../stage_2_val_split_all.csv")
+	dataset = PneumoniaDataset(dataRoot="../stage_2_train_images", infoFile="../stage_2_train_split_all.csv", transforms=None)
+	dataset_test = PneumoniaDataset(dataRoot="../stage_2_train_images", infoFile="../stage_2_val_split_all.csv", transforms=None)
 
 	# define training and validation data loaders
 	data_loader = torch.utils.data.DataLoader(
@@ -65,3 +64,6 @@ def main(batch_size=16,):
 		evaluate(model, data_loader_test, device=device)
 
 	print("That's it!")
+
+if __name__ == '__main__':
+	main()
