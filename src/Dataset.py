@@ -4,6 +4,8 @@ import torch
 from PIL import Image
 import os
 import pydicom
+from ast import literal_eval
+
 
 class PneumoniaDataset(object):
 	def __init__(self, dataRoot, infoFile, transforms):
@@ -13,12 +15,13 @@ class PneumoniaDataset(object):
 
 	def __getitem__(self, idx):
 		row = self.info.iloc[idx]
-		dcmPath = os.path.join(self.dataRoot,row["patientId"],".dcm")
+		dcmPath = os.path.join(self.dataRoot,row["patientId"]) + ".dcm"
 		dcm = pydicom.dcmread(dcmPath)
 		pixels = dcm.pixel_array
 		img = Image.fromarray(pixels)
 		# Populate necessary fields
-		image_id = row["patientId"]
+		#image_id = row["patientId"]
+		image_id = idx
 		boxes = []
 		labels = []
 		area = []
@@ -33,12 +36,13 @@ class PneumoniaDataset(object):
 				x,y,w,h = xList[boxNum], yList[boxNum], widthList[boxNum], heightList[boxNum]
 				boxes.append([x,y,x+w,y+h])
 				labels.append(label)
-				area.append(width * height)
+				area.append(w * h)
 				iscrowd.append(False)
 		boxes = torch.as_tensor(boxes, dtype=torch.float32)
 		labels = torch.as_tensor(labels, dtype=torch.int64)
-		area = torch.as_tensor(area, dtype=torch.flaot32)
+		area = torch.as_tensor(area, dtype=torch.float32)
 		iscrowd = torch.as_tensor(iscrowd, dtype=torch.int64)
+		image_id = torch.tensor([image_id])
 		target = {"boxes":boxes,
 					"labels":labels,
 					"image_id":image_id,
